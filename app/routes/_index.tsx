@@ -34,8 +34,8 @@ export default function Index() {
 
   // this useCallback is necessary to avoid unnecessary rerenders
   const handleSubComponentClick = useCallback(() => {
-    setSubComponentState((prev) => prev + 1);
-  }, []);
+    setSubComponentState(subComponentState + 1); // smarter implementation: (prev) => prev + 1
+  }, [subComponentState]);
 
   console.log("Index rendered");
   return (
