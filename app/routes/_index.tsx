@@ -1,4 +1,5 @@
 import type { MetaFunction } from "@remix-run/node";
+import { memo, useState } from "react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -7,7 +8,24 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+const Suffix = memo(function suffix({ num }: { num: number }) {
+  console.log("Suffix rendered");
+  return <div>Number: {num}</div>;
+});
+
 export default function Index() {
+  const [state, setState] = useState(0);
+  const [subComponentState, setSubComponentState] = useState(0);
+
+  const handleIncrementClick = () => {
+    setState((prev) => prev + 1);
+  };
+
+  const handleSubComponentClick = () => {
+    setSubComponentState((prev) => prev + 1);
+  };
+
+  console.log("Index rendered");
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
       <h1>Welcome to Remix</h1>
@@ -36,6 +54,16 @@ export default function Index() {
           </a>
         </li>
       </ul>
+      <button onClick={handleIncrementClick}>
+        Increment state in main method
+      </button>
+      <div>{state}</div>
+      <button onClick={handleSubComponentClick}>SubComponent state</button>
+      <div>{subComponentState}</div>
+      <div>
+        <h2>Prefix</h2>
+        <Suffix num={subComponentState} />
+      </div>
     </div>
   );
 }
