@@ -1,4 +1,8 @@
-# Welcome to Remix!
+# Klas's state experiment
+
+This is a simple app to experiment with state management in Remix.
+
+## Welcome to Remix!
 
 - [Remix Docs](https://remix.run/docs)
 
