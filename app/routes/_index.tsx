@@ -1,5 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
-import { memo, useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
+import { Suffix } from "./Suffix";
 
 export const meta: MetaFunction = () => {
   return [
@@ -7,24 +8,6 @@ export const meta: MetaFunction = () => {
     { name: "description", content: "Welcome to Remix!" },
   ];
 };
-
-const Suffix = memo(function suffix({
-  options: { subComponentState: num },
-  handleClick,
-}: {
-  options: {
-    subComponentState: number;
-  };
-  handleClick: () => void;
-}) {
-  console.log("Suffix rendered");
-  return (
-    <>
-      <button onClick={handleClick}>SubComponent state</button>
-      <div>Number: {num}</div>
-    </>
-  );
-});
 
 export default function Index() {
   const [state, setState] = useState(0);
