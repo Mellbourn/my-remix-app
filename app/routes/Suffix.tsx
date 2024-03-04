@@ -1,5 +1,6 @@
 import { memo } from "react";
 
+// memo is necessary, otherwise this will always be rerendered
 export const Suffix = memo(function suffix({
   options: { subComponentState: num },
   handleClick,
